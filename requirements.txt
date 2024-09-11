@@ -1,1 +1,3 @@
 flask
+ansible
+ansible[core]
