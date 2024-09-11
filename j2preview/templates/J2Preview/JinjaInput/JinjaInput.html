@@ -1,0 +1,8 @@
+<label class="form-control">
+  <div class="label">
+    <span class="label-text">Jinja</span>
+  </div>
+  <textarea class="h-96 textarea textarea-bordered"
+            name="JinjaInput"
+            value="{{ request.form['JinjaInput'] | default('') }}">{{- request.form['JinjaInput'] | default('') }}</textarea>
+</label>

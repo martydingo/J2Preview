@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "j2preview"
+version = "0.1.0"
+description = ""
+authors = ["Martin George <marty@dingo.foo>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[[tool.poetry.source]]
+name = "pythonhosted"
+url = "https://files.pythonhosted.org"
+priority = "primary"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
