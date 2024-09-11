@@ -11,14 +11,24 @@ print()
 @app.route("/index", methods=("GET", "POST"))
 def index():
     JinjaOutput = ""
+    styleClass = "noerror"
     if request.method == "POST":
-        YamlInput = yaml.safe_load(request.form["YamlInput"])
-        JinjaInput = request.form["JinjaInput"]
+        Error = False
+        try:
+            YamlInput = yaml.safe_load(request.form["YamlInput"])
+            JinjaInput = request.form["JinjaInput"]
 
-        JinjaOutput = renderTemplate(YamlInput, JinjaInput)
-        print(JinjaOutput)
-
-    return render_template("index.html", request=request, JinjaOutput=JinjaOutput)
+            JinjaOutput, Error = renderTemplate(YamlInput, JinjaInput)
+        except Exception as err:
+            Error = True
+            JinjaOutput = err
+        if Error == True:
+            styleClass = "error"
+        else:
+            styleClass = "success"
+    return render_template(
+        "index.html", request=request, JinjaOutput=JinjaOutput, styleClass=styleClass
+    )
 
 
 if __name__ == "__main__":

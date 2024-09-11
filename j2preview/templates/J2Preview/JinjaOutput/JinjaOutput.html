@@ -1,9 +1,13 @@
 <label class="form-control">
-    <div>
-        <span class="label-text">Output</span>
-    </div>
-    <textarea class="h-[56rem] textarea textarea-bordered"
+
+    <div class="mockup-code bg-base-200">
+    <div class="m-6">
+    <textarea 
+              id="JinjaOutput"
+              class="h-[56rem] w-full textarea font-mono"
               name="JinjaOutput"
               disabled
               value="{{ JinjaOutput | default('') }}">{{ JinjaOutput | default('') }}</textarea>
+</div>
+</div>
 </label>

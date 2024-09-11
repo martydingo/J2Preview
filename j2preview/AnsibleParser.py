@@ -14,13 +14,6 @@ import json, os
 def renderTemplate(yamlVars, jinjaTemplate):
     # Create a callback plugin so we can capture the output
     class ResultsCollectorJSONCallback(CallbackBase):
-        """A sample callback plugin used for performing an action as results come in.
-
-        If you want to collect all results into a single object for processing at
-        the end of the execution, look into utilizing the ``json`` callback plugin
-        or writing your own custom callback plugin.
-        """
-
         def __init__(self, *args, **kwargs):
             super(ResultsCollectorJSONCallback, self).__init__(*args, **kwargs)
             self.host_ok = {}
@@ -32,13 +25,8 @@ def renderTemplate(yamlVars, jinjaTemplate):
             self.host_unreachable[host.get_name()] = result
 
         def v2_runner_on_ok(self, result, *args, **kwargs):
-            """Print a json representation of the result.
-
-            Also, store the result in an instance attribute for retrieval later
-            """
             host = result._host
             self.host_ok[host.get_name()] = result
-            # print(json.dumps({host.name: result._result}, indent=4))
 
         def v2_runner_on_failed(self, result, *args, **kwargs):
             host = result._host
@@ -83,8 +71,6 @@ def renderTemplate(yamlVars, jinjaTemplate):
         loader=loader, inventory=inventory, version_info=CLI.version_info(gitinfo=False)
     )
 
-    print(jinjaTemplate)
-
     with open("template.j2", "w") as file:
         file.write(rf"{jinjaTemplate}")
         file.close()
@@ -119,10 +105,10 @@ def renderTemplate(yamlVars, jinjaTemplate):
     if len(results_callback.host_failed) > 0:
         print("ERROR")
         output = results_callback.host_failed["localhost"]._result["msg"]
-        return output
+        return (output, True)
     else:
         if len(results_callback.host_ok) > 0:
             output = results_callback.host_ok["localhost"]._result["ansible_facts"][
                 "output"
             ]
-            return output
+            return (output, False)

@@ -18,5 +18,23 @@ export default {
     daisyui,
     tailwind_typography
   ],
+  daisyui: {
+    themes: [
+      {
+        halcyon: {
+          "primary": "#ffcc66",
+          "secondary": "#f6d860",
+          "accent": "#37cdbe",
+          "neutral": "#3d4451",
+          "base-100": "#171c28",
+          "base-200": "#1d2433",
+          "base-300": "#2f3b54",
+          "base-content": "#d7dce2"
+
+
+        },
+      },
+    ],
+  },
 }
 

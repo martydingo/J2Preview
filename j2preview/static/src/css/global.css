@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+textarea:disabled {
+    color: #a2aabc !important;
+    background-color: transparent !important;
+}
+
+.error {
+    border-color: #ef6b73 !important;
+}
+
+.noerror {
+    border: none !important;
+}
+
+.success {
+    border-color: #bae67e !important;
+}
