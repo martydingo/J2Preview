@@ -1,3 +1,4 @@
 flask
 ansible
 ansible[core]
+pyyaml
